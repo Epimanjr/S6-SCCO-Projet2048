@@ -27,7 +27,9 @@ public class Utilisateur {
         this.nom = name;
     }
 
-    public static void afficherClassement() {
+    public static Object[][] afficherClassement() {
+        // Initialisation du résultat
+        Object[][] obj = new Object[10][3];
         // On récupère le classement dans la BDD
         String query = "";
         try {
@@ -37,18 +39,25 @@ public class Utilisateur {
             // Exécution de la requête
             Statement statement = Connexion.getConnection().createStatement();
             ResultSet result = statement.executeQuery(query);
+            int it = 0;
             // Interprétation du résultat
             while (result.next()) {
                 // Récupération du nom d'utilisteur
                 String nom = result.getString("nom");
                 // Récupération de son score
                 int score = result.getInt("score");
+                // Ajout dans l'objet
+                obj[it][0] = it + 1;
+                obj[it][1] = nom;
+                obj[it][2] = score;
+                it++;
                 // Affichage dans la console
                 System.out.println(nom + ": " + score);
             }
         } catch (SQLException ex) {
             System.out.println("SQLException pour : " + query);
         }
+        return obj;
     }
 
     /**
@@ -94,6 +103,11 @@ public class Utilisateur {
     }
 
     /* GETTER / SETTER */
+    
+    /**
+     * 
+     * @return Renvoie le nom de l'utilisateur.
+     */
     public String getName() {
         return nom;
     }
