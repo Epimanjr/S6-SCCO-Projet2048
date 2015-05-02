@@ -22,12 +22,12 @@ public class MainFrame extends javax.swing.JFrame {
      * Plateau du jeu.
      */
     public static Plateau plateau;
-    
+
     /**
      * Utilisateur du jeu.
      */
     public static Utilisateur utilisateur;
-    
+
     public Controleur controleur;
 
     /**
@@ -52,9 +52,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         jPanel1 = new Panel();
         aide = new javax.swing.JButton();
-        aideTotale = new javax.swing.JButton();
         affichageIA = new javax.swing.JLabel();
         boutonSauvegarder = new javax.swing.JButton();
+        aideTotale = new javax.swing.JButton();
+        boutonStop = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Projet 2048");
@@ -69,7 +70,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 401, Short.MAX_VALUE)
+            .addGap(0, 409, Short.MAX_VALUE)
         );
 
         aide.setText("I.A. prochain coup");
@@ -77,14 +78,6 @@ public class MainFrame extends javax.swing.JFrame {
         aide.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aideActionPerformed(evt);
-            }
-        });
-
-        aideTotale.setText("I.A. jusqu'à 2048");
-        aideTotale.setFocusable(false);
-        aideTotale.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aideTotaleActionPerformed(evt);
             }
         });
 
@@ -98,6 +91,21 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        aideTotale.setText("I.A. jusqu'à 2048");
+        aideTotale.setFocusable(false);
+        aideTotale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aideTotaleActionPerformed(evt);
+            }
+        });
+
+        boutonStop.setText("Stop");
+        boutonStop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boutonStopActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -105,34 +113,48 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(boutonSauvegarder)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(aideTotale, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(aide, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(affichageIA, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(aideTotale)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(aide)))
-                .addContainerGap())
+                        .addGap(11, 11, 11)
+                        .addComponent(boutonStop)
+                        .addGap(31, 31, 31))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(aide)
-                            .addComponent(aideTotale)
-                            .addComponent(affichageIA, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(aide)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(affichageIA, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(3, 3, 3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(aideTotale)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(boutonSauvegarder)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
-                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(boutonSauvegarder))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addComponent(boutonStop)))
+                        .addGap(481, 481, 481))))
         );
 
         pack();
@@ -150,49 +172,33 @@ public class MainFrame extends javax.swing.JFrame {
     private void aideTotaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aideTotaleActionPerformed
         // TODO add your handling code here:
 
-        // Parcours, tant qu'on a pas atteint 2048
-        while (!plateau.testVictoire()) {
-            // Appel de l'IA
-            String resultat = plateau.iaNext();
-            affichageIA.setText(resultat);
-            // Interprétation de l'IA
-            switch (resultat) {
-                case "HAUT":
-                    controleur.actionCode(KeyEvent.VK_UP);
-                    break;
-                case "BAS":
-                    controleur.actionCode(KeyEvent.VK_DOWN);
-                    break;
-                case "GAUCHE":
-                    controleur.actionCode(KeyEvent.VK_LEFT);
-                    break;
-                case "DROIT":
-                    controleur.actionCode(KeyEvent.VK_RIGHT);
-                    break;
-            }
-            // Petite pause
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+        // Création du Thread
+        t = new Thread(new IntelligenceArt());
+        // Lancement
+        t.start();
     }//GEN-LAST:event_aideTotaleActionPerformed
 
     private void boutonSauvegarderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonSauvegarderActionPerformed
         // TODO add your handling code here:
-        
+
         // Sauvegarde du plateau
         MainFrame.plateau.sauvegarder();
-        
+
         // Sauvegarde du score utilisateur
-        if(MainFrame.utilisateur != null) {
+        if (MainFrame.utilisateur != null) {
             MainFrame.utilisateur.insertionScore(MainFrame.plateau.score);
         }
-        
+
         // Message confirmation
         JOptionPane.showMessageDialog(null, "Sauvegarde de la partie effectuée.", "OK", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_boutonSauvegarderActionPerformed
+
+    private void boutonStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonStopActionPerformed
+        // TODO add your handling code here:
+        
+        // Arrêt du thread
+        t.stop();
+    }//GEN-LAST:event_boutonStopActionPerformed
 
     /**
      * @param args the command line arguments
@@ -230,13 +236,48 @@ public class MainFrame extends javax.swing.JFrame {
         });
     }
 
+    private Thread t;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel affichageIA;
     private javax.swing.JButton aide;
     private javax.swing.JButton aideTotale;
     private javax.swing.JButton boutonSauvegarder;
+    private javax.swing.JButton boutonStop;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
-    
+    class IntelligenceArt implements Runnable {
+
+        @Override
+        public void run() {
+            // Parcours, tant qu'on a pas atteint 2048
+            while (!plateau.testVictoire() && plateau.testDep()) {
+                // Appel de l'IA
+                String resultat = plateau.iaNext();
+                affichageIA.setText(resultat);
+                // Interprétation de l'IA
+                switch (resultat) {
+                    case "HAUT":
+                        controleur.actionCode(KeyEvent.VK_UP);
+                        break;
+                    case "BAS":
+                        controleur.actionCode(KeyEvent.VK_DOWN);
+                        break;
+                    case "GAUCHE":
+                        controleur.actionCode(KeyEvent.VK_LEFT);
+                        break;
+                    case "DROIT":
+                        controleur.actionCode(KeyEvent.VK_RIGHT);
+                        break;
+                }
+                // Petite pause
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
+    }
 }

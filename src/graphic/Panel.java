@@ -54,10 +54,13 @@ public class Panel extends JPanel {
                 g.drawRect(marge + j * (preferredWidth / 4), marge + i * (preferredHeight / 4), preferredWidth / 4, preferredHeight / 4);
 
                 // Dessin du nombre
-                g.setColor(Color.WHITE);
-                Font font = new Font("Courier", Font.BOLD, 20);
-                g.setFont(font);
-                g.drawString("" + nb, marge + j * (preferredWidth / 4) + 50, marge + i * (preferredHeight / 4) + 50);
+                if (nb != 0) {
+                    g.setColor(Color.BLACK);
+                    Font font = new Font("Courier", Font.BOLD, 20);
+                    g.setFont(font);
+                    g.drawString("" + nb, marge + j * (preferredWidth / 4) + 50, marge + i * (preferredHeight / 4) + 50);
+
+                }
             }
         }
     }

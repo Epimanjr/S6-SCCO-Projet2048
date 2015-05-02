@@ -136,8 +136,13 @@ public class BeginFrame extends javax.swing.JFrame {
     private void boutonClassementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonClassementActionPerformed
         // TODO add your handling code here:
 
+        /*
         // Affichage du classement dans la console
         Utilisateur.afficherClassement();
+        */
+        
+        // Affichage du classement dans une nouvelle Fenetre
+        new ClassementFrame().setVisible(true);
     }//GEN-LAST:event_boutonClassementActionPerformed
 
     private void boutonValiderNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonValiderNomActionPerformed
@@ -155,23 +160,30 @@ public class BeginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_saisieNomActionPerformed
 
     public void generer_partie_simple(boolean nouvellePartie) {
-        // Génération des données nécessaires (couleurs, ...)
-        Config.init();
-        MainFrame mf = new MainFrame();
-        if (!nouvellePartie) {
-            // Recharge du plateau
-            if (!MainFrame.plateau.recharger()) {
-                // Affichage d'un message d'erreur
-                JOptionPane.showMessageDialog(null, "Erreur lors de la recharge\n", "Erreur", JOptionPane.ERROR_MESSAGE);
+        String nom = saisieNom.getText();
+        if (nom.equals("")) {
+            JOptionPane.showMessageDialog(null, "Veuillez entrer un nom.", "Erreur", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            // Création de l'utilisateur
+            validerNomUtilisateur();
+            // Génération des données nécessaires (couleurs, ...)
+            Config.init();
+            MainFrame mf = new MainFrame();
+            if (!nouvellePartie) {
+                // Recharge du plateau
+                if (!MainFrame.plateau.recharger()) {
+                    // Affichage d'un message d'erreur
+                    JOptionPane.showMessageDialog(null, "Erreur lors de la recharge\n", "Erreur", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    this.dispose();
+                    mf.addKeyListener(mf.controleur);
+                    mf.setVisible(true);
+                }
             } else {
                 this.dispose();
                 mf.addKeyListener(mf.controleur);
                 mf.setVisible(true);
             }
-        } else {
-            this.dispose();
-            mf.addKeyListener(mf.controleur);
-            mf.setVisible(true);
         }
 
     }

@@ -25,7 +25,7 @@ public class Controleur implements KeyListener {
     public void keyTyped(KeyEvent e) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         //System.out.println("Touche pressé");
-        
+
     }
 
     @Override
@@ -33,7 +33,7 @@ public class Controleur implements KeyListener {
         System.out.print("Touche préssé: ");
         actionCode(e.getKeyCode());
     }
-    
+
     public void actionCode(int code) {
         switch (code) {
             case KeyEvent.VK_UP:
@@ -61,11 +61,16 @@ public class Controleur implements KeyListener {
         MainFrame.plateau.sauvegarder();
         // Dessin
         panel.repaint();
-        if(MainFrame.plateau.testVictoire()) {
+        // Test si l'utilisateur a perdu
+        if (!MainFrame.plateau.testDep()) {
+            JOptionPane.showMessageDialog(null, "Vous avez perdu!!", "Lost", JOptionPane.INFORMATION_MESSAGE);
+        }
+        // Test si l'utilisateur a gagné
+        if (MainFrame.plateau.testVictoire()) {
             JOptionPane.showMessageDialog(null, "Vous avez gagné!!", "Win", JOptionPane.INFORMATION_MESSAGE);
         }
     }
-    
+
     @Override
     public void keyReleased(KeyEvent e) {
        // System.out.println("Touche pressé");
