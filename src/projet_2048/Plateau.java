@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -124,6 +125,9 @@ public class Plateau {
         }
     }
 
+    /**
+     * 
+     */
     public void depHaut() {
         for (int cpt = 0; cpt < 3; cpt++) {
             for (int i = 0; i < 4; i++) {
@@ -203,7 +207,12 @@ public class Plateau {
      */
     public String iaNext() {
         // TODO
-        return ("TODO");
+        ArrayList<String> liste = new ArrayList<>();
+        liste.add("HAUT");
+        liste.add("BAS");
+        liste.add("GAUCHE");
+        liste.add("DROIT");
+        return liste.get((int)(Math.random() * 4));
     }
 
     /**
